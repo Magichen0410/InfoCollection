@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mediaplayer_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/mediaplayer_name"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textColor="@color/white"
+            />
+        </android.support.v7.widget.Toolbar>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|end"
+                    android:text="@string/mediaplayer_num_text"
+                    android:textSize="20sp"
+                />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                >
+                <Spinner
+                    android:id="@+id/mediaplayer_num"
+                    android:layout_width="100dp"
+                    android:gravity="start"
+                    android:layout_height="wrap_content">
+                </Spinner>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableLayout
+                android:id="@+id/mediaplayer_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/mediaplayer_tablelayout_padding"
+                android:stretchColumns="*">
+            </TableLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/mediaplayer_play"
+                android:layout_width="@dimen/mediaplayer_play_button_width"
+                android:layout_height="@dimen/mediaplayer_play_button_height"
+                android:text="@string/mediaplayer_play" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.v4.widget.DrawerLayout>

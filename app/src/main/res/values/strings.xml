@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">信息采集</string>
+    <string name="mediaplayer_name">多实例播放器</string>
+
+    <!--切台耗时-->
+    <string name="total_time">按键后到显示第一帧</string>
+    <string name="total_time_nowait_keyframe">未等待第一个I帧的耗时</string>
+    <string name="total_time_init_firstpic">启动解码器到显示第一帧</string>
+    <string name="total_time_key_firstpic">拿到第一个I帧到该帧显示</string>
+    <string name="totoal_time_no_press_key">旧频道结束到新频道显示第一帧</string>
+    <string name="press_close_time">按键后到旧频道结束的耗时</string>
+    <string name="codec_close_time">旧频道解码器关闭耗时</string>
+    <string name="close_init_time">旧频道解码器关闭到新频道初始化开始</string>
+    <string name="codec_init_time">新频道解码器初始化耗时</string>
+    <string name="init_firstcheckin_time">解码器初始化完成到拿到第一帧</string>
+    <string name="firstcheckin_cmd1_time">等待第一个I帧耗时</string>
+    <string name="cmd1_firstcheckout_time">拿到第一个I帧到解出第一个I帧</string>
+    <string name="firstcheckout_decoded_time">解出第一个I帧到解码出输出第一帧</string>
+    <string name="decoded_frame0_time">解码器输出第一帧到di拿到第一场（帧）</string>
+    <string name="di0_firstout_time">di拿到第一帧到输出第一帧</string>
+    <string name="frame0_frame1_time">di拿到第一场到di拿到第二场</string>
+    <string name="di1_firstout_time">di拿到第二场到di输出第一帧</string>
+    <string name="di2_firstout_time">di拿到第三场到di输出第一帧</string>
+    <string name="frame1_frame2_time">di拿到第二场到di拿到第三场</string>
+    <string name="di_firstpic_time">di输出第一帧到显示第一帧</string>
+
+    <!--秒掉计时器-->
+    <string name="init_time_second">00:00:00</string>
+    <string name="init_time_100millisecond">00:00:00.0</string>
+    <string name="init_time_1millisecond">00:00:00.000</string>
+    <string name="menu_setting_timer_unit">设置计时单位</string>
+    <string name="menu_about">关于</string>
+    <string name="menu_exit">退出</string>
+    <string name="menu_setting_second">1秒</string>
+    <string name="menu_setting_100milisec">0.1秒</string>
+    <string name="menu_setting_1milisec">0.001秒</string>
+
+    <!--多实例播放器-->
+    <string name="mediaplayer_num_text">选择播放器数量：</string>
+    <string name="mediaplayer_play">开始播放</string>
+    <string name="mediaplayer_browse">浏览</string>
+</resources>
