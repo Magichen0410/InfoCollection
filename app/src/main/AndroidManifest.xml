@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.amlogic.toolkit.infocollection">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,19 +23,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SystemInfoActivity"></activity>
+        <activity android:name=".ui.SystemInfoActivity" />
         <activity
             android:name=".ui.mediaplayer.MutliMediaPlayerActivity"
-            android:label="@string/mediaplayer_name"></activity>
+            android:label="@string/mediaplayer_name" />
 
         <service
             android:name=".service.SwitchChannelTimeService"
-            android:process="com.amlogic.toolkit.infocollection.SwitchChannelTimeService"></service>
+            android:process="com.amlogic.toolkit.infocollection.SwitchChannelTimeService" />
         <service
             android:name=".service.StopWatchService"
-            android:process="com.amlogic.toolkit.infocollection.StopWatchService"></service>
+            android:process="com.amlogic.toolkit.infocollection.StopWatchService" />
 
-        <activity android:name=".ui.mediaplayer.FileManagerActivity"></activity>
+        <activity android:name=".ui.mediaplayer.FileManagerActivity" />
+        <activity android:name=".ui.mediaplayer.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>

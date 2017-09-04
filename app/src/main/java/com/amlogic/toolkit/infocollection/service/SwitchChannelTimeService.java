@@ -54,6 +54,8 @@ public class SwitchChannelTimeService extends Service {
     private SwitchChannelAdapter switchChannelAdapter;
     //定义浮动窗口布局
     LinearLayout mFloatLayout;
+    LinearLayout mFloatLayoutChild;
+
     WindowManager.LayoutParams wmParams;
     //创建浮动窗口设置布局参数的对象
     WindowManager mWindowManager;
@@ -144,7 +146,9 @@ public class SwitchChannelTimeService extends Service {
         //添加mFloatLayout
         mWindowManager.addView(mFloatLayout, wmParams);
         //浮动窗口按钮
-        mGridView = (GridView) mFloatLayout.getChildAt(0);
+
+        mFloatLayoutChild = (LinearLayout) mFloatLayout.getChildAt(1);
+        mGridView = (GridView) mFloatLayoutChild.getChildAt(0);
 
 /*        mFloatLayout.measure(View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED), View.MeasureSpec
@@ -213,12 +217,17 @@ public class SwitchChannelTimeService extends Service {
 
         String[] sourceStrArray = str.split(",");
         for (int i = 0; i < sourceStrArray.length; i++) {
-            SwitchChannelInfoBean switchChannelInfo ;
-            String[] strArray = sourceStrArray[i].split(":");
-            Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
-            switchChannelInfo = new SwitchChannelInfoBean(strArray[0],strArray[1]);
-            Log.i(TAG, "onCreate: strArray[0] : " + strArray[0] + " strArray[1] :" + strArray[1]);
-            switchChannelInfoBeans.add(switchChannelInfo);
+
+            if (i == 2 || i == 3 || i ==4) {
+                continue;
+            } else {
+                SwitchChannelInfoBean switchChannelInfo;
+                String[] strArray = sourceStrArray[i].split(":");
+                //Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
+                switchChannelInfo = new SwitchChannelInfoBean(strArray[0], strArray[1]);
+                //Log.i(TAG, "onCreate: strArray[0] : " + strArray[0] + " strArray[1] :" + strArray[1]);
+                switchChannelInfoBeans.add(switchChannelInfo);
+            }
         }
     }
 
@@ -239,7 +248,7 @@ public class SwitchChannelTimeService extends Service {
             if (buffer.toString().equals(null)) {
                 first_frame_flag = 0;
             } else {
-                Log.i(TAG, "OpenFirstFrameDev: buffer " + buffer.toString());
+                //Log.i(TAG, "OpenFirstFrameDev: buffer " + buffer.toString());
                 first_frame_flag = Integer.parseInt(buffer.toString());
             }
         } catch (FileNotFoundException e) {
@@ -247,7 +256,7 @@ public class SwitchChannelTimeService extends Service {
         } catch (IOException e) {
             Log.i(TAG, "OpenFirstFrameDev: Error reading ", e);
         }
-        Log.i(TAG, "OpenFirstFrameDev: first_frame_flag = " + first_frame_flag);
+        //Log.i(TAG, "OpenFirstFrameDev: first_frame_flag = " + first_frame_flag);
         return first_frame_flag;
     }
 
@@ -287,10 +296,10 @@ public class SwitchChannelTimeService extends Service {
             br.close();
 
             if (buffer.toString().equals(null)) {
-                Log.i(TAG, "OpenDevName: buffer is null ");
+                //Log.i(TAG, "OpenDevName: buffer is null ");
                 UpdateData(initializedData);
             } else {
-                Log.i(TAG, "OpenDevName: buffer = " + buffer.toString());
+                //Log.i(TAG, "OpenDevName: buffer = " + buffer.toString());
                 UpdateData(buffer.toString());
             }
         } catch (FileNotFoundException e) {

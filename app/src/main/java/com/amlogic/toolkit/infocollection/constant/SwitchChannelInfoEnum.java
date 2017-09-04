@@ -48,10 +48,10 @@ public enum SwitchChannelInfoEnum {
         int indexKey = 0;
 
         for (SwitchChannelInfoEnum e : SwitchChannelInfoEnum.values()) {
-            Log.i(TAG, "getKeyBySwitchChannelInfoName: getSwitchChannelInfoName = " + e.getSwitchChannelInfoName());
+            //Log.i(TAG, "getKeyBySwitchChannelInfoName: getSwitchChannelInfoName = " + e.getSwitchChannelInfoName());
             if (e.getSwitchChannelInfoName().equals(switchChannelInfoName)){
                 indexKey = e.getKey();
-                Log.i(TAG, "getKeyBySwitchChannelInfoName: getKey = " + indexKey);
+                //Log.i(TAG, "getKeyBySwitchChannelInfoName: getKey = " + indexKey);
                 return indexKey;
             }
         }

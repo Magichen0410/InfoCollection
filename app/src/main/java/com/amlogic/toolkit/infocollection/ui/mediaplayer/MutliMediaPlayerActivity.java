@@ -40,6 +40,7 @@ public class MutliMediaPlayerActivity extends AppCompatActivity implements Adapt
     private static final String SDCARD_PATH = "/";
     private static final String TAG = "MutliMediaPlayerActivit";
     private String[] mediaplayerNum = new String[]{"1","2","3","4","5","6","7","8","9"};
+    private String[] filePaths = new String[9];
     private Spinner mediaplayerSpinner;
     private TableLayout mediaplayerTable;
     private List<MutliMediaPlayerBean> mutliMediaPlayerBeanList;
@@ -66,6 +67,8 @@ public class MutliMediaPlayerActivity extends AppCompatActivity implements Adapt
         //mediaplayerListView.setAdapter(mutliMediaPlayerAdapter);
 
         mediaplayerTable = (TableLayout) findViewById(R.id.mediaplayer_info);
+        Button button = (Button) findViewById(R.id.mediaplayer_play);
+        button.setOnClickListener(this);
 
     }
 
@@ -115,15 +118,31 @@ public class MutliMediaPlayerActivity extends AppCompatActivity implements Adapt
     @Override
     public void onClick(View view) {
         Log.e(TAG, "onClick: getId = " + view.getId());
-        EditText editText = (EditText) mediaplayerTable.findViewById((EDITTEXT_BASE_ID + (view.getId() - BUTTON_BASE_ID)));
-        //editText.setText("Hello");
-        selectFile(view.getId());
+        if (view.getId() == Integer.valueOf(R.id.mediaplayer_play)){
+            Intent intent = new Intent(this, VideoPlayerActivity.class);
+            intent.putExtra("count", playerNum);
+            intent.putExtra("filePaths", filePaths);
+            startActivity(intent);
+        } else {
+            EditText editText = (EditText) mediaplayerTable.findViewById((EDITTEXT_BASE_ID + (view.getId() - BUTTON_BASE_ID)));
+            selectFile(view.getId());
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String filePath = null;
+        int filePathId = 0;
         //EditText editText = (EditText) mediaplayerTable.findViewById((EDITTEXT_BASE_ID + (view.getId() - BUTTON_BASE_ID)));
-        super.onActivityResult(requestCode, resultCode, data);
+        if ((-1 == resultCode) && (requestCode >= BUTTON_BASE_ID + 1)
+                && (requestCode <= BUTTON_BASE_ID + 9)) {
+            filePath = data.getStringExtra("path");
+            EditText editText = mediaplayerTable.findViewById((EDITTEXT_BASE_ID
+                    + (requestCode - BUTTON_BASE_ID)));
+            editText.setText(filePath);
+            filePathId = requestCode-BUTTON_BASE_ID -1;
+            filePaths[filePathId] = filePath;
+        }
     }
 
     private void selectFile(int playerId)

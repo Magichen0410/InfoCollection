@@ -79,8 +79,8 @@ public class SwitchChannelAdapter extends BaseAdapter {
             holder = (ViewHolder) view.getTag();
         }
 
-        Log.i(TAG, "getView: SwitchChannelTimeName : " + switchChannelInfoBean.getSwitchChannelTimeName());
-        
+        //Log.i(TAG, "getView: SwitchChannelTimeName : " + switchChannelInfoBean.getSwitchChannelTimeName());
+
         if (i == 0 || i ==1) {
             //holder.switchChannelTimeName.setText(switchChannelInfoBean.getSwitchChannelTimeName());
             setSwitchChannelTimeName(holder.switchChannelTimeName,switchChannelInfoBean.getSwitchChannelTimeName());

@@ -19,5 +19,24 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
+    <style name="MutliVideo">
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:layout_width">320.0dip</item>
+        <item name="android:layout_height">220.0dip</item>
+    </style>
+    <style name="MutliVideo1" parent="@style/MutliVideo">
+        <item name="android:layout_marginTop">5.0dip</item>
+        <item name="android:layout_marginRight">5.0dip</item>
+    </style>
+    <style name="MutliVideo2" parent="@style/MutliVideo1">
+        <item name="android:layout_alignParentTop">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+    </style>
+    <style name="MutliVideo3">
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
 </resources>

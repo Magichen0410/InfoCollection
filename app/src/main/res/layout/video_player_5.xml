@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:background="@drawable/background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0.0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0">
+            <com.amlogic.toolkit.infocollection.widgets.MutliVideoView
+                android:id="@id/video_view_1"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_width="320.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                style="@style/MutliVideo2" />
+            <com.amlogic.toolkit.infocollection.widgets.MutliVideoView
+                android:id="@id/video_view_2"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_width="320.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                style="@style/MutliVideo1" />
+            <com.amlogic.toolkit.infocollection.widgets.MutliVideoView
+                android:id="@id/video_view_3"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_width="320.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                style="@style/MutliVideo1" />
+            <com.amlogic.toolkit.infocollection.widgets.MutliVideoView
+                android:id="@+id/video_view_4"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:layout_width="320.0dip"
+                android:layout_height="0.0dip"
+                android:layout_weight="1.0"
+                style="@style/MutliVideo1" />
+        </LinearLayout>
+    </LinearLayout>
+    <com.amlogic.toolkit.infocollection.widgets.MutliVideoView
+        android:id="@id/video_view_0"
+        style="@style/MutliVideo3" />
+</RelativeLayout>
