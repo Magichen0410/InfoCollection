@@ -2,6 +2,7 @@ package com.amlogic.toolkit.infocollection;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.amlogic.toolkit.infocollection.adapter.MainMenuAdapter;
 import com.amlogic.toolkit.infocollection.javabean.MainMenuBean;
+import com.amlogic.toolkit.infocollection.receiver.PlayerActionInfoReceiver;
 import com.amlogic.toolkit.infocollection.utils.DensityUtil;
 import com.amlogic.toolkit.infocollection.utils.OtherUtil;
 
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         mainMenuBeanArrayList.add(new MainMenuBean("com.amlogic.toolkit.infocollection",
                 "com.amlogic.toolkit.infocollection.ui.mediaplayer.MutliMediaPlayerActivity",
                 "多实例播放器", false));
+        mainMenuBeanArrayList.add(new MainMenuBean("com.amlogic.toolkit.infocollection",
+                "com.amlogic.toolkit.infocollection.service.PlayerActionInfoService",
+                "播放信息监听", true));
     }
 
     private class MenuGridViewItemListener implements AdapterView.OnItemClickListener {

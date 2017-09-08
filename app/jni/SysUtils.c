@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "net/if.h"
 #include "arpa/inet.h"
 #include "linux/sockios.h"
@@ -10,6 +11,9 @@
 #define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "com.amlogic.toolkit.infocollection", __VA_ARGS__)
 
 static const char *classPathName = "com/amlogic/toolkit/infocollection/natives/SysUtils";
+static const char *firstFrameNode = "/sys/module/amvideo/parameters/first_frame_toggled";
+static const char *switchTimeInfoNode = "/sys/class/video/timedebug_info";
+static const char *switchTimeDebug = "/sys/module/di/parameters/time_debug";
 
 void callcmd(){
     FILE* fp;
@@ -131,6 +135,77 @@ jstring Java_com_amlogic_toolkit_infocollection_natives_SysUtils_getBroadAddr(JN
     return jstr2;
 }
 
+jstring Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_getFirstFrameInfo(JNIEnv* env, jobject obj) {
+    FILE* pFile;
+    char *pBuf;
+
+    if (access(firstFrameNode,F_OK) != 0)
+    {
+        pBuf = "";
+        jstring jstr2 = (*env) -> NewStringUTF(env, pBuf);
+        return jstr2;
+    }
+    pFile = fopen(firstFrameNode,"r");
+
+    fseek(pFile,0,SEEK_END);
+    int len = ftell(pFile);
+    pBuf = (char*)malloc(len+1);
+    memset(pBuf,0x0,len+1);
+    rewind(pFile);
+    fread(pBuf,1,len,pFile);
+
+    jstring jstr2 = (*env) -> NewStringUTF(env, pBuf);
+    free(pBuf);
+    pclose(pFile);
+
+    return jstr2;
+}
+
+jstring Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_getSwitchTimeInfo(JNIEnv* env, jobject obj) {
+    FILE* pFile;
+    char *pBuf;
+
+    if (access(switchTimeInfoNode,F_OK) != 0)
+    {
+        pBuf = "";
+        jstring jstr2 = (*env) -> NewStringUTF(env, pBuf);
+        return jstr2;
+    }
+    pFile = fopen(switchTimeInfoNode,"r");
+
+    fseek(pFile,0,SEEK_END);
+    int len = ftell(pFile);
+    pBuf = (char*)malloc(len+1);
+    memset(pBuf,0x0,len+1);
+    rewind(pFile);
+    fread(pBuf,1,len,pFile);
+
+    jstring jstr2 = (*env) -> NewStringUTF(env, pBuf);
+    free(pBuf);
+    pclose(pFile);
+
+    return jstr2;
+}
+
+void Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_startDbg(JNIEnv* env, jobject obj) {
+    FILE* pFile;
+    char *pBuf;
+
+    pFile = fopen(switchTimeDebug,"w");
+    fwrite("1", 1, 1, pFile);
+
+    pclose(pFile);
+}
+
+void Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_stopDbg(JNIEnv* env, jobject obj) {
+    FILE* pFile;
+    char *pBuf;
+
+    pFile = fopen(switchTimeDebug,"w");
+    fwrite("0", 1, 1, pFile);
+
+    pclose(pFile);
+}
 
 static JNINativeMethod gMethods[] = {
         {"getIpAddress", "()Ljava/lang/String;",
@@ -141,6 +216,12 @@ static JNINativeMethod gMethods[] = {
             (void*)Java_com_amlogic_toolkit_infocollection_natives_SysUtils_getMacAddr},
         {"getBroadAddr", "()Ljava/lang/String;",
             (void*)Java_com_amlogic_toolkit_infocollection_natives_SysUtils_getBroadAddr},
+        {"getFirstFrameInfo", "()Ljava/lang/String;",
+            (void*)Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_getFirstFrameInfo},
+        {"getSwitchTimeInfo", "()Ljava/lang/String;",
+            (void*)Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_getSwitchTimeInfo},
+        {"startDbg", "()V", (void*)Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_startDbg},
+        {"stopDbg", "()V", (void*)Java_com_amlogic_toolkit_infocollection_natives_NodeInfo_stopDbg},
 };
 
 //注册native方法到java中

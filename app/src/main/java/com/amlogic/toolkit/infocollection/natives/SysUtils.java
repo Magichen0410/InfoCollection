@@ -1,5 +1,7 @@
 package com.amlogic.toolkit.infocollection.natives;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,6 +27,14 @@ public class SysUtils {
 
     private static native String getBroadAddr();
 
+    private static native String getFirstFrameInfo();
+
+    private static native String getSwitchTimeInfo();
+
+    private static native void startDbg();
+
+    private static native void stopDbg();
+
     public static String getIpAddr()
     {
         return getIpAddress();
@@ -40,6 +50,28 @@ public class SysUtils {
 
     public static String getBroadcastAddr(){
         return getBroadAddr();
+    }
+
+    public static void startDebug() {
+        startDbg();
+    }
+
+    public static void stopDebug() {
+        stopDbg();
+    }
+
+    public static String getFirstFrame() {
+        String str = null;
+        String strtmp = SysUtils.getFirstFrameInfo();
+        str = new String(strtmp.substring(0, strtmp.length()-1));
+        return str;
+    }
+
+    public static String getSwitchTime() {
+        String str = null;
+        String strtmp = SysUtils.getSwitchTimeInfo();
+        str = new String(strtmp.substring(0, strtmp.length()-1));
+        return str;
     }
 
     public static String getDNS1(){

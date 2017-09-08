@@ -81,7 +81,7 @@ public class SwitchChannelAdapter extends BaseAdapter {
 
         //Log.i(TAG, "getView: SwitchChannelTimeName : " + switchChannelInfoBean.getSwitchChannelTimeName());
 
-        if (i == 0 || i ==1) {
+        if (i == 0 || i == 1 || i == 4) {
             //holder.switchChannelTimeName.setText(switchChannelInfoBean.getSwitchChannelTimeName());
             setSwitchChannelTimeName(holder.switchChannelTimeName,switchChannelInfoBean.getSwitchChannelTimeName());
             holder.switchChannelTimeName.setTextColor(context.getResources().getColor(R.color.yellow));

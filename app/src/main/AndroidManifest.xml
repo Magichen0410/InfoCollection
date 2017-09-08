@@ -36,7 +36,11 @@
             android:process="com.amlogic.toolkit.infocollection.StopWatchService" />
 
         <activity android:name=".ui.mediaplayer.FileManagerActivity" />
-        <activity android:name=".ui.mediaplayer.VideoPlayerActivity"></activity>
+        <activity android:name=".ui.mediaplayer.VideoPlayerActivity" />
+
+        <service
+            android:name=".service.PlayerActionInfoService"
+            android:process="com.amlogic.toolkit.infocollection.PlayerActionInfoService" />
     </application>
 
 </manifest>

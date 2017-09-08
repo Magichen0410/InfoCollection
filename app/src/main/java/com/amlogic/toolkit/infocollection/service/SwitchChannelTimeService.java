@@ -6,7 +6,6 @@ import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -40,8 +39,8 @@ public class SwitchChannelTimeService extends Service {
     private static final String initializedData = "total_time:0 ms,total_time(no wait keyframe):0 ms,total_time(init->fistpic):0 ms,total_time(key->firstpic):0 ms,total_time(no press key):0 ms,press_close_time:0 ms,codec_close_time:0 ms,codec_init_time:0 ms,init_firstcheckin_time:0 ms,firstcheckin_cmd1_time:0 ms,cmd1_firstcheckout_time:0 ms,firstcheckout_decoded_time:0 ms,decoded_frame0_time:0 ms,frame0_frame1_time:0 ms,frame1_frame2_time:0 ms,di2_firstout_time:0 ms,di_firstpic_time:0 ms";
     private static final String TAG = "SwitchChannelService";
     private static final String slDugDevName = "/sys/module/di/parameters/time_debug";
-    private static final String slDevName = "/sys/module/amvideo/parameters/first_frame_toggled";
 //    private static final String slDevName = "/storage/external_storage/sda1/first_frame_toggled";
+    private static final String slDevName = "/sys/module/amvideo/parameters/first_frame_toggled";
     private static final String slDevSwitchChannel = "/sys/class/video/timedebug_info";
     private GridView mGridView;
     private Timer timer;
@@ -218,37 +217,56 @@ public class SwitchChannelTimeService extends Service {
         String[] sourceStrArray = str.split(",");
         for (int i = 0; i < sourceStrArray.length; i++) {
 
-            if (i == 2 || i == 3 || i ==4) {
+            if (i == 2 || i == 3 || i == 4) {
                 continue;
             } else {
                 SwitchChannelInfoBean switchChannelInfo;
-                String[] strArray = sourceStrArray[i].split(":");
-                //Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
-                switchChannelInfo = new SwitchChannelInfoBean(strArray[0], strArray[1]);
+                String[] strArray = (sourceStrArray[i]).split(":");
+                Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
+                //new String()修改equals无法匹配的问题。
+                switchChannelInfo = new SwitchChannelInfoBean(new String(strArray[0].trim()), new String (strArray[1].trim()));
                 //Log.i(TAG, "onCreate: strArray[0] : " + strArray[0] + " strArray[1] :" + strArray[1]);
                 switchChannelInfoBeans.add(switchChannelInfo);
             }
         }
     }
 
-    private int OpenFirstFrameDev (String DevPath) {
+    /*private int OpenFirstFrameDev () {
+        int first_frame_flag = 0;
+        String strbuf = null;
+        strbuf = SysUtils.getFirstFrame();
+        //strbuf = "0";
+        strbuf.length();
+        Log.e(TAG, "OpenFirstFrameDev: strbuf = " + strbuf);
+        if (strbuf.equals(null)) {
+            first_frame_flag = 0;
+        } else {
+            //Log.i(TAG, "OpenFirstFrameDev: buffer " + buffer.toString());
+            first_frame_flag = Integer.parseInt(strbuf.toString());
+        }
+        //Log.i(TAG, "OpenFirstFrameDev: first_frame_flag = " + first_frame_flag);
+        return first_frame_flag;
+    }*/
+
+    private int OpenFirstFrameDev (String slDevName) {
         int first_frame_flag = 0;
         try {
-            FileInputStream fis = new FileInputStream(DevPath);
+            FileInputStream fis = new FileInputStream(slDevName);
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr, 4096);
             StringBuffer buffer = new StringBuffer();
             String ch = null;
             {
-                while ((ch = br.readLine()) != null) {
+                while ((ch = br.readLine()) != null)
                     buffer.append(ch);
-                }
             }
             br.close();
+
             if (buffer.toString().equals(null)) {
+                //Log.i(TAG, "OpenDevName: buffer is null ");
                 first_frame_flag = 0;
             } else {
-                //Log.i(TAG, "OpenFirstFrameDev: buffer " + buffer.toString());
+                //Log.i(TAG, "OpenDevName: buffer = " + buffer.toString());
                 first_frame_flag = Integer.parseInt(buffer.toString());
             }
         } catch (FileNotFoundException e) {
@@ -256,7 +274,7 @@ public class SwitchChannelTimeService extends Service {
         } catch (IOException e) {
             Log.i(TAG, "OpenFirstFrameDev: Error reading ", e);
         }
-        //Log.i(TAG, "OpenFirstFrameDev: first_frame_flag = " + first_frame_flag);
+
         return first_frame_flag;
     }
 

@@ -43,6 +43,7 @@ public class SystemInfoActivity extends AppCompatActivity {
         bundle.putSerializable("systeminfobeanlist",systemInfoBeanArrayList);
         systemInfoOptionFragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
         fragmentTransaction.replace(R.id.systeminfo_option_layout, systemInfoOptionFragment);
         fragmentTransaction.commit();
     }
