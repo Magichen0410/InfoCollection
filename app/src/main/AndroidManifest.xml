@@ -23,24 +23,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SystemInfoActivity" />
         <activity
+            android:theme="@style/AppThemeBase"
+            android:name=".ui.SystemInfoActivity" />
+        <activity
+            android:theme="@style/ThemeBase"
             android:name=".ui.mediaplayer.MutliMediaPlayerActivity"
             android:label="@string/mediaplayer_name" />
+
+        <activity
+            android:theme="@style/AppThemeBase"
+            android:name=".ui.mediaplayer.FileManagerActivity" />
+
+        <activity android:name=".ui.mediaplayer.VideoPlayerActivity" />
 
         <service
             android:name=".service.SwitchChannelTimeService"
             android:process="com.amlogic.toolkit.infocollection.SwitchChannelTimeService" />
+
         <service
             android:name=".service.StopWatchService"
             android:process="com.amlogic.toolkit.infocollection.StopWatchService" />
 
-        <activity android:name=".ui.mediaplayer.FileManagerActivity" />
-        <activity android:name=".ui.mediaplayer.VideoPlayerActivity" />
-
         <service
             android:name=".service.PlayerActionInfoService"
             android:process="com.amlogic.toolkit.infocollection.PlayerActionInfoService" />
+
+        <service
+            android:name=".service.FloatMenuService"
+            android:process="com.amlogic.toolkit.infocollection.FloatMenuService" />
+
+        <service
+            android:name=".service.SystemInfoService"
+            android:process="com.amlogic.toolkit.infocollection.SystemInfoService" />
     </application>
 
 </manifest>

@@ -5,6 +5,8 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
 
+import com.amlogic.toolkit.infocollection.javabean.MemInfoBean;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
@@ -20,6 +22,8 @@ import java.io.InputStreamReader;
  */
 
 public class SystemInfoUtil {
+
+    private static final String TAG = "SystemInfoUtil";
 
     public static String getCpuTemp() {
         String cpu_temp = null;
@@ -212,6 +216,58 @@ public class SystemInfoUtil {
         }
 //        return Formatter.formatFileSize(getBaseContext(), initial_memory);// Byte转换为KB或者MB，内存大小规格化
         return String.valueOf(Integer.valueOf(arrayOfString[1]).intValue() / 1024) + " M ";
+    }
+
+    public static void getTotalMemory(MemInfoBean memInfoBean) {
+        String str1 = "/proc/meminfo";// 系统内存信息文件
+        String str2;
+        String[] arrayOfString = null;
+        double memAvailable , memTotal, memProgress;
+        long initial_memory = 0;
+        int i = 0;
+        
+        if (memInfoBean == null) {
+            Log.e(TAG, "getTotalMemory: param memInfoBean is null");
+            return;
+        }
+        try {
+            FileReader localFileReader = new FileReader(str1);
+            BufferedReader localBufferedReader = new BufferedReader(localFileReader, 8192);
+            //str2 = localBufferedReader.readLine();// 读取meminfo第一行，系统总内存大小
+
+            while ((str2 = localBufferedReader.readLine()) != null) {
+
+                if (i == 0){
+                    arrayOfString = str2.split("\\s+");
+                    /*for (String num : arrayOfString) {
+                        Log.i(str2, num + "\t");
+                    }*/
+                    memInfoBean.setMemTotal(arrayOfString[1]);
+                } else if (i == 1) {
+                    arrayOfString = str2.split("\\s+");
+                    /*for (String num : arrayOfString) {
+                        Log.i(str2, num + "\t");
+                    }*/
+                    memInfoBean.setMemFree(arrayOfString[1]);
+                } else if (i == 2) {
+                    arrayOfString = str2.split("\\s+");
+                    /*for (String num : arrayOfString) {
+                        Log.i(str2, num + "\t");
+                    }*/
+                    memInfoBean.setMemAvailable(arrayOfString[1]);
+                } else {
+                    break;
+                }
+                i++;
+            }
+            localBufferedReader.close();
+        } catch (IOException e) {
+        }
+        memAvailable = Integer.valueOf(memInfoBean.getMemAvailable()).intValue();
+        memTotal = Integer.valueOf(memInfoBean.getMemTotal()).intValue();
+        memProgress = (memAvailable/memTotal)*100;
+        Log.e(TAG, "getTotalMemory: memAvailable = "+ memAvailable + ", memTotal = "+ memTotal +", memProgress = " + memProgress);
+        memInfoBean.setAvailableProgress((int) memProgress);
     }
 
     /**

@@ -77,10 +77,20 @@ public class FileManagerActivity extends ListActivity {
         HashMap hashMap = new HashMap();
         hashMap.put("image_view", Integer.valueOf(R.drawable.filemanager_floder));
         hashMap.put("text_file_name", "..");
+
         if (path.equals("/")) {
             hashMap.put("text_file_path", "/");
         }
         listItem.add(hashMap);
+
+        if (!((File)FileObject).exists()) {
+            Collections.sort(this.listItem, new MyComparator());
+            ((SimpleAdapter)getListView().getAdapter()).notifyDataSetChanged();
+            listView.setSelection(0);
+            listView.requestFocus();
+            return;
+        }
+
         fileChilds = ((File)FileObject).listFiles();
         if (fileChilds != null) {
             hashMap.put("text_file_path", ((File)FileObject).getParentFile());

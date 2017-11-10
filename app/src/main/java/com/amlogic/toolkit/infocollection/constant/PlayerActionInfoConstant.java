@@ -1,10 +1,11 @@
 package com.amlogic.toolkit.infocollection.constant;
 
 /**
- * Created by Wenjie.Chen on 2017/9/5.
+ * Created by Wenjie.Chen on 2017/9/11.
  */
 
 public class PlayerActionInfoConstant {
+
     public static final int PLAY_PREPARE = 1;
     public static final int PLAY_START = 2;
     public static final int SEEK_START = 3;
@@ -19,4 +20,7 @@ public class PlayerActionInfoConstant {
     public static final int BLURREDSCREEN_START = 12;
     public static final int BLURREDSCREEN_END = 13;
     public static final int ERROR_MESSAGE = 14;
+    public static final int UNLOAD_START = 17;
+    public static final int UNLOAD_END = 18;
+    public static final int PTS_INFO = 19;
 }

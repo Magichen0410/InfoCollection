@@ -3,6 +3,7 @@
     <string name="mediaplayer_name">多实例播放器</string>
 
     <!--切台耗时-->
+    <string name="switch_channel_name"><b>切台耗时信息</b></string>
     <string name="total_time">按键后到显示第一帧</string>
     <string name="total_time_nowait_keyframe">未等待第一个I帧的耗时</string>
     <string name="total_time_init_firstpic">启动解码器到显示第一帧</string>
@@ -37,6 +38,46 @@
 
     <!--多实例播放器-->
     <string name="mediaplayer_num_text">选择播放器数量：</string>
+    <string name="mediaplayer_type_text">播放器类型：</string>
     <string name="mediaplayer_play">开始播放</string>
     <string name="mediaplayer_browse">浏览</string>
+
+    <!--Player Info-->
+    <string name="player_id"><b>标识：</b></string>
+    <string name="player_name"><b>名称</b></string>
+    <string name="user_operation"><b>用户操作</b></string>
+    <string name="pts_title"><b>PTS信息</b></string>
+    <string name="playing_info"><b>播放信息</b></string>
+    <string name="player_value"><b>参数值</b></string>
+    <string name="base_title"><b>基本信息</b></string>
+    <string name="error_title"><b>错误统计</b></string>
+    <string name="player_url"><b>播放地址：</b></string>
+    <string name="player_duration"><b>播放时长：</b></string>
+    <string name="player_starttime"><b>开始时间：</b></string>
+    <string name="audio_format"><b>音频格式：</b></string>
+    <string name="audio_number"><b>音频数量：</b></string>
+    <string name="current_audio"><b>当前音轨：</b></string>
+    <string name="audio_channel"><b>声道：</b></string>
+    <string name="audio_sample_rate"><b>采样率(Hz)：</b></string>
+    <string name="video_format"><b>视频格式：</b></string>
+    <string name="video_codec"><b>视频解码器：</b></string>
+    <string name="video_frame_rate"><b>视频帧率(fps)：</b></string>
+    <string name="video_progress"><b>扫描方式：</b></string>
+    <string name="resolution_ratio"><b>视频分辨率：</b></string>
+    <!--Error Message-->
+    frist_buffering
+    <string name="first_buffering"><b>首缓冲时间(ms)：</b></string>
+    <string name="buffering_playtime"><b>缓存可播时长(s)：</b></string>
+    <string name="buffering_times"><b>缓存次数：</b></string>
+    <string name="current_buffering_average_time"><b>平均缓存时间(ms)：</b></string>
+    <string name="bitrate_change"><b>码率切换次数：</b></string>
+    <string name="blurredscreen_times"><b>花屏次数：</b></string>
+    <string name="video_unload"><b>视频欠载次数：</b></string>
+    <string name="video_decoder_errors"><b>视频数据错误次数：</b></string>
+    <string name="audio_decoder_errors"><b>音频数据错误次数：</b></string>
+    <!--User Operation-->
+    <string name="operation_name"><b>操作名称</b></string>
+    <string name="operation_time"><b>操作时间</b></string>
+    <string name="operation_result"><b>操作结果</b></string>
+    <string name="play_time"><b>播放时间</b></string>
 </resources>

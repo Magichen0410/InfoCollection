@@ -1,10 +1,12 @@
 package com.amlogic.toolkit.infocollection.javabean;
 
+import java.io.Serializable;
+
 /**
  * Created by Wenjie.Chen on 2017/8/8.
  */
 
-public class SystemInfoBean {
+public class SystemInfoBean implements Serializable{
     private String systemInfoTitle;
     private String systemInfoContent;
 

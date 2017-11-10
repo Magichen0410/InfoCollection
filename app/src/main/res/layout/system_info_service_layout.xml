@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <devlight.io.library.ArcProgressStackView
+        android:id="@+id/apsv_systeminfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:apsv_animated="true"
+        app:apsv_animation_duration="1000"
+        app:apsv_dragged="false"
+        app:apsv_draw_width="75%"
+        app:apsv_indicator_orientation="vertical"
+        app:apsv_interpolator="@android:anim/bounce_interpolator"
+        app:apsv_leveled="true"
+        app:apsv_model_bg_enabled="true"
+        app:apsv_model_offset="5dp"
+        app:apsv_preview_bg="#ccc"
+        app:apsv_preview_colors="@array/default_preview"
+        app:apsv_rounded="true"
+        app:apsv_shadow_angle="90"
+        app:apsv_shadow_color="#000"
+        app:apsv_shadow_distance="5dp"
+        app:apsv_shadow_radius="10dp"
+        app:apsv_shadowed="true"
+        app:apsv_start_angle="270"
+        app:apsv_sweep_angle="360"
+        app:apsv_text_color="#fff" />
+
+</android.support.constraint.ConstraintLayout>

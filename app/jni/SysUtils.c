@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <sys/socket.h>
 #include "net/if.h"
 #include "arpa/inet.h"
 #include "linux/sockios.h"

@@ -1,17 +1,25 @@
 package com.amlogic.toolkit.infocollection.service;
 
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.amlogic.toolkit.infocollection.R;
 import com.amlogic.toolkit.infocollection.adapter.SwitchChannelAdapter;
@@ -43,6 +51,7 @@ public class SwitchChannelTimeService extends Service {
     private static final String slDevName = "/sys/module/amvideo/parameters/first_frame_toggled";
     private static final String slDevSwitchChannel = "/sys/class/video/timedebug_info";
     private GridView mGridView;
+    private ImageView mCloseImageView;
     private Timer timer;
     private long mlTimerUnit = 1000;
     private long mlSwitchTime;
@@ -52,14 +61,26 @@ public class SwitchChannelTimeService extends Service {
     private List<SwitchChannelInfoBean> switchChannelInfoBeans;
     private SwitchChannelAdapter switchChannelAdapter;
     //定义浮动窗口布局
-    LinearLayout mFloatLayout;
+    RelativeLayout mFloatLayout;
     LinearLayout mFloatLayoutChild;
 
     WindowManager.LayoutParams wmParams;
     //创建浮动窗口设置布局参数的对象
     WindowManager mWindowManager;
+    float mRawX, mRawY, mStartX, mStartY;
 
+    @Override
+    public IBinder onBind(Intent intent)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        return START_NOT_STICKY;
+    }
 
     @Override
     public void onCreate()
@@ -77,6 +98,17 @@ public class SwitchChannelTimeService extends Service {
         mGridView.setAdapter(switchChannelAdapter);
         mGridView.setNumColumns(1);
         mGridView.setFocusable(false);
+
+        mCloseImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ComponentName comp = new ComponentName("com.amlogic.toolkit.infocollection",
+                        "com.amlogic.toolkit.infocollection.service.SwitchChannelTimeService");
+                Intent intent = new Intent();
+                intent.setComponent(comp);
+                stopService(intent);
+            }
+        });
 
         switchChannelHandler = new SwitchChannelHandler();
 
@@ -106,12 +138,7 @@ public class SwitchChannelTimeService extends Service {
         timer.schedule(task, mlTimerUnit, mlTimerUnit); // set timer duration
     }
 
-    @Override
-    public IBinder onBind(Intent intent)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
 
     private void createFloatView()
     {
@@ -126,67 +153,68 @@ public class SwitchChannelTimeService extends Service {
         //设置浮动窗口不可聚焦（实现操作除浮动窗口外的其他可见窗口的操作）
         wmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         //调整悬浮窗显示的停靠位置为左侧置顶
-        wmParams.gravity = Gravity.RIGHT | Gravity.TOP;
+        wmParams.gravity = Gravity.START | Gravity.TOP;
         // 以屏幕左上角为原点，设置x、y初始值，相对于gravity
-        wmParams.x = 0;
+        wmParams.x = 401;
         wmParams.y = 0;
 
         //设置悬浮窗口长宽数据
         wmParams.width = DensityUtil.dip2px(this,400); //WindowManager.LayoutParams.WRAP_CONTENT;
-        wmParams.height = DensityUtil.dip2px(this,400);//WindowManager.LayoutParams.WRAP_CONTENT;
-
-		 /*// 设置悬浮窗口长宽数据
-        wmParams.width = 200;
-        wmParams.height = 80;*/
+        wmParams.height = DensityUtil.dip2px(this,500);//WindowManager.LayoutParams.WRAP_CONTENT;
 
         LayoutInflater inflater = LayoutInflater.from(this);
         //获取浮动窗口视图所在布局
-        mFloatLayout = (LinearLayout) inflater.inflate(R.layout.float_layout, null);
+        mFloatLayout = (RelativeLayout) inflater.inflate(R.layout.float_layout, null);
         //添加mFloatLayout
         mWindowManager.addView(mFloatLayout, wmParams);
         //浮动窗口按钮
+        mGridView = mFloatLayout.findViewById(R.id.switch_channel_detailinfo);
+        mCloseImageView = mFloatLayout.findViewById(R.id.image_view_close);
 
-        mFloatLayoutChild = (LinearLayout) mFloatLayout.getChildAt(1);
-        mGridView = (GridView) mFloatLayoutChild.getChildAt(0);
-
-/*        mFloatLayout.measure(View.MeasureSpec.makeMeasureSpec(0,
+        mFloatLayout.measure(View.MeasureSpec.makeMeasureSpec(0,
                 View.MeasureSpec.UNSPECIFIED), View.MeasureSpec
                 .makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
         Log.i(TAG, "Width/2--->" + mGridView.getMeasuredWidth()/2);
-        Log.i(TAG, "Height/2--->" + mGridView.getMeasuredHeight()/2);*/
+        Log.i(TAG, "Height/2--->" + mGridView.getMeasuredHeight()/2);
 
-/*        //设置监听浮动窗口的触摸移动
-        mGridView.setOnTouchListener(new View.OnTouchListener()
+        //设置监听浮动窗口的触摸移动
+        mFloatLayout.setOnTouchListener(new View.OnTouchListener()
         {
-
             @Override
             public boolean onTouch(View v, MotionEvent event)
             {
-                // TODO Auto-generated method stub
-                //getRawX是触摸位置相对于屏幕的坐标，getX是相对于按钮的坐标
-                wmParams.x = (int) event.getRawX() - mGridView.getMeasuredWidth()/2;
-                Log.i(TAG, "RawX" + event.getRawX());
-                Log.i(TAG, "X" + event.getX());
-                //减25为状态栏的高度
-                wmParams.y = (int) event.getRawY() - mGridView.getMeasuredHeight()/2 - 25;
-                Log.i(TAG, "RawY" + event.getRawY());
-                Log.i(TAG, "Y" + event.getY());
-                //刷新
-                mWindowManager.updateViewLayout(mFloatLayout, wmParams);
+                mRawX = event.getRawX();
+                mRawY = event.getRawY();
+
+                final int action = event.getAction();
+
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // 以当前父视图左上角为原点
+                        mStartX = event.getX();
+                        mStartY = event.getY();
+                        break;
+
+                    case MotionEvent.ACTION_MOVE:
+                        updateWindowPosition();
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        updateWindowPosition();
+                        break;
+                }
                 return false;  //此处必须返回false，否则OnClickListener获取不到监听
             }
-        });*/
 
-       /* mGridView.setOnClickListener(new View.OnClickListener()
-        {
-
-            @Override
-            public void onClick(View v)
-            {
-                // TODO Auto-generated method stub
-                Toast.makeText(SwitchChannelTimeService.this, "onClick", Toast.LENGTH_SHORT).show();
+            private void updateWindowPosition() {
+                    // 更新坐标
+                    wmParams.x = (int)(mRawX - mStartX);
+                    wmParams.y = (int)(mRawY - mStartY);
+                    Log.e(TAG, "updateWindowPosition: wmParams.x = " + wmParams.x + " wmParams.y = " + wmParams.y);
+                    // 使参数生效
+                    mWindowManager.updateViewLayout(mFloatLayout, wmParams);
             }
-        });*/
+        });
     }
 
     @Override
@@ -199,6 +227,9 @@ public class SwitchChannelTimeService extends Service {
             //移除悬浮窗口
             mWindowManager.removeView(mFloatLayout);
         }
+
+        int pid = android.os.Process.myPid();//获取当前应用程序的PID
+        android.os.Process.killProcess(pid);//杀死当前进程
     }
 
     private class SwitchChannelHandler extends Handler {
@@ -222,7 +253,7 @@ public class SwitchChannelTimeService extends Service {
             } else {
                 SwitchChannelInfoBean switchChannelInfo;
                 String[] strArray = (sourceStrArray[i]).split(":");
-                Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
+                //Log.i(TAG, "onCreate: sourceStrArray: " + sourceStrArray[i]);
                 //new String()修改equals无法匹配的问题。
                 switchChannelInfo = new SwitchChannelInfoBean(new String(strArray[0].trim()), new String (strArray[1].trim()));
                 //Log.i(TAG, "onCreate: strArray[0] : " + strArray[0] + " strArray[1] :" + strArray[1]);

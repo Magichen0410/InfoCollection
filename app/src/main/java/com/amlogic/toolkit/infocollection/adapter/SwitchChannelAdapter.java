@@ -1,7 +1,6 @@
 package com.amlogic.toolkit.infocollection.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 import com.amlogic.toolkit.infocollection.R;
 import com.amlogic.toolkit.infocollection.constant.SwitchChannelInfoEnum;
 import com.amlogic.toolkit.infocollection.javabean.SwitchChannelInfoBean;
+import com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView;
 
 import java.util.List;
 
@@ -72,8 +72,8 @@ public class SwitchChannelAdapter extends BaseAdapter {
         if (view == null) {
             view = mInflater.inflate(R.layout.switch_channel_time_item,null);
             holder = new ViewHolder();
-            holder.switchChannelTimeName = (TextView) view.findViewById(R.id.switch_channel_time_name);
-            holder.switchChannelTimeValue = (TextView) view.findViewById(R.id.switch_channel_time_value);
+            holder.switchChannelTimeName = (MsyhtjTextView) view.findViewById(R.id.switch_channel_time_name);
+            holder.switchChannelTimeValue = (MsyhtjTextView) view.findViewById(R.id.switch_channel_time_value);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -85,18 +85,18 @@ public class SwitchChannelAdapter extends BaseAdapter {
             //holder.switchChannelTimeName.setText(switchChannelInfoBean.getSwitchChannelTimeName());
             setSwitchChannelTimeName(holder.switchChannelTimeName,switchChannelInfoBean.getSwitchChannelTimeName());
             holder.switchChannelTimeName.setTextColor(context.getResources().getColor(R.color.yellow));
-            holder.switchChannelTimeName.setTextSize(17);
+            holder.switchChannelTimeName.setTextSize(14);
             holder.switchChannelTimeValue.setText(switchChannelInfoBean.getSwitchChannelTimeValue());
             holder.switchChannelTimeValue.setTextColor(context.getResources().getColor(R.color.yellow));
-            holder.switchChannelTimeValue.setTextSize(17);
+            holder.switchChannelTimeValue.setTextSize(14);
         } else {
             //holder.switchChannelTimeName.setText(switchChannelInfoBean.getSwitchChannelTimeName());
             setSwitchChannelTimeName(holder.switchChannelTimeName,switchChannelInfoBean.getSwitchChannelTimeName());
             holder.switchChannelTimeName.setTextColor(context.getResources().getColor(R.color.white));
-            holder.switchChannelTimeName.setTextSize(15);
+            holder.switchChannelTimeName.setTextSize(14);
             holder.switchChannelTimeValue.setText(switchChannelInfoBean.getSwitchChannelTimeValue());
             holder.switchChannelTimeValue.setTextColor(context.getResources().getColor(R.color.white));
-            holder.switchChannelTimeName.setTextSize(15);
+            holder.switchChannelTimeName.setTextSize(14);
         }
 
         return view;
@@ -174,7 +174,7 @@ public class SwitchChannelAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        public TextView switchChannelTimeName;
-        public TextView switchChannelTimeValue;
+        public MsyhtjTextView switchChannelTimeName;
+        public MsyhtjTextView switchChannelTimeValue;
     }
 }

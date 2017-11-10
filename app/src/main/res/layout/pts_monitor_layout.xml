@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="470dp"
+    android:layout_height="192dp"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+
+    <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+        android:id="@+id/user_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_span="2"
+        android:background="@color/chartreuse"
+        android:gravity="center"
+        android:text="@string/pts_title"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+    <TableLayout
+        android:id="@+id/tablePtsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--<TableRow
+                android:background="@color/powderblue" >
+                <TextView android:text="@string/operation_name" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/operation_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/operation_result" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/play_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+            </TableRow>-->
+    </TableLayout>
+
+</LinearLayout>

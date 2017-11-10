@@ -1,30 +1,610 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="320dp"
-    android:layout_height="400dp"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="906dp"
+    android:layout_height="418dp"
     android:background="@drawable/background">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="200dp"
+        android:layout_height="386dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+            android:id="@+id/textView"
+            android:layout_span="2"
+            android:background="#ccff99"
             android:gravity="center"
-            android:textSize="20sp"
-            android:text="播放基本信息"/>
+            android:text="@string/base_title"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TableRow android:background="#99ccff">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:layout_marginLeft="6.0dip"
+                android:gravity="left"
+                android:text="@string/player_name"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:layout_marginLeft="6.0dip"
+                android:gravity="left"
+                android:text="@string/player_value"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/player_id"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/playerid"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/player_url"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/playerurl"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:maxWidth="100dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/player_duration"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/playerduration"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:maxWidth="100dp"
+                android:singleLine="true"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/player_starttime"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/playerstarttime"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/audio_format"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/audioformat"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/audio_number"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/audionumber"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/current_audio"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/currentaudio"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <!--<TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip" >
+            <TextView android:text="@string/audio_codec" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" />
+            <TextView android:id="@+id/audiocodec" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:text="null"/>
+        </TableRow>-->
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/audio_channel"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/audiochannel"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/audio_sample_rate"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/audiosamplerate"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/video_format"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/videoformat"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <!--<TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip" >
+            <TextView android:text="@string/video_codec" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" />
+            <TextView android:id="@+id/videocodec" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:text="null"/>
+        </TableRow>-->
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/video_frame_rate"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/videoframerate"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/video_progress"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/videoprogress"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/resolution_ratio"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/resolutionratio"
+                android:gravity="left"
+                android:text="null"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="470dp"
+        android:layout_height="192dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/tableLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+            android:id="@+id/user_operation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_span="2"
+            android:background="@color/chartreuse"
+            android:gravity="center"
+            android:text="@string/user_operation"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TableLayout
+            android:id="@+id/tableUserLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--<TableRow
+                    android:background="@color/powderblue" >
+                    <TextView android:text="@string/operation_name" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                    <TextView android:text="@string/operation_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                    <TextView android:text="@string/operation_result" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                    <TextView android:text="@string/play_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                </TableRow>-->
+        </TableLayout>
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="200dp"
+        android:layout_height="242dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintLeft_toRightOf="@id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+            android:id="@+id/errorsTextView"
+            android:layout_span="2"
+            android:background="@color/violet"
+            android:gravity="center"
+            android:text="@string/error_title"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TableRow android:background="@color/powderblue">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:layout_marginLeft="6.0dip"
+                android:gravity="left"
+                android:text="@string/player_name"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:layout_marginLeft="6.0dip"
+                android:gravity="left"
+                android:text="@string/player_value"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/first_buffering"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/firstbuffering"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <!--<TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <TextView
+                android:gravity="left"
+                android:text="@string/buffering_playtime"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/buffering_playtime"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </TableRow>-->
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/buffering_times"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/bufferingtimes"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/current_buffering_average_time"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/current_buffering_average_time"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/bitrate_change"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/bitratechange"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/blurredscreen_times"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/blurredscreentimes"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/video_unload"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/video_unload"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/video_decoder_errors"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/video_decoder_errors"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="6.0dip"
+            android:layout_marginRight="6.0dip">
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:gravity="left"
+                android:text="@string/audio_decoder_errors"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+                android:id="@+id/audio_decoder_errors"
+                android:gravity="left"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_delete_gray" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
+        android:id="@+id/linearLayout2"
+        android:layout_width="470dp"
+        android:layout_height="192dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <com.amlogic.toolkit.infocollection.widgets.MsyhtjTextView
+            android:id="@+id/buffering_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:layout_span="2"
+            android:background="@color/tan"
+            android:gravity="center"
+            android:text="@string/playing_info"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TableLayout
+            android:id="@+id/tablePlayerInfoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <!--<TableRow
+                android:background="@color/powderblue" >
+                <TextView android:text="@string/operation_name" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/operation_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/operation_result" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+                <TextView android:text="@string/play_time" android:layout_weight="1" android:gravity="left" android:textSize="12sp" android:textColor="@color/black" android:layout_marginLeft="6.0dip"/>
+            </TableRow>-->
+        </TableLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="200dp"
+        android:layout_height="142dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="2dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="@id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@id/tableLayout2">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/pts_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开启pts监控"
+            android:textSize="14sp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/close_pts_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭pts监控"
+            android:textSize="14sp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

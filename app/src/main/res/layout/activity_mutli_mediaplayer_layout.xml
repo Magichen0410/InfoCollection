@@ -26,6 +26,43 @@
             />
         </android.support.v7.widget.Toolbar>
 
+        <!--<LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="56sp"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center|end"
+                    android:text="@string/mediaplayer_type_text"
+                    android:textSize="20sp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="start|center"
+                >
+                <Spinner
+                    android:id="@+id/mediaplayer_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="start">
+                </Spinner>
+            </LinearLayout>
+
+        </LinearLayout>-->
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -56,8 +93,10 @@
                 <Spinner
                     android:id="@+id/mediaplayer_num"
                     android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:gravity="start"
-                    android:layout_height="wrap_content">
+                    android:background="@drawable/spinner_selector"
+                    >
                 </Spinner>
             </LinearLayout>
 
@@ -85,7 +124,9 @@
                 android:id="@+id/mediaplayer_play"
                 android:layout_width="@dimen/mediaplayer_play_button_width"
                 android:layout_height="@dimen/mediaplayer_play_button_height"
-                android:text="@string/mediaplayer_play" />
+                android:text="@string/mediaplayer_play"
+                android:background="@drawable/button_selector"
+                />
         </LinearLayout>
     </LinearLayout>
 
